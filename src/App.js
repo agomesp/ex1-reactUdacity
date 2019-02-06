@@ -97,6 +97,14 @@ const movies = {
   },
 };
 
+const favoriteMovieName = profiles.map((profile) => {
+	const favoriteMovie = movies[profile.favoriteMovieID].name;
+	const userName = users[profile.userID].name;
+    
+    return ({favoriteMovie: favoriteMovie, userName: userName})
+});
+
+
 class App extends Component {
   render() {
     return (
@@ -106,6 +114,9 @@ class App extends Component {
           <h1 className="App-title">ReactND - Coding Practice</h1>
         </header>
         <h2>Favorite Movies</h2>
+		{favoriteMovieName.map((profile) => (
+          <p key={profile.userName}>{profile.userName}'s favorite movie is {profile.favoriteMovie}</p>
+		))}
       </div>
     );
   }
